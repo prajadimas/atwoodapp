@@ -1,0 +1,43 @@
+{
+  "name": "electron-atwood",
+  "version": "1.0.0",
+  "description": "Pesawat Atwood Application",
+  "main": "main.js",
+  "scripts": {
+    "postinstall": "electron-rebuild",
+    "macbuild": "electron-packager . atwood-apps --overwrite --platform=darwin --arch=x64 --prune=true --out=.build --icon=Icon.icns",
+    "win64build": "electron-packager . atwood-apps --overwrite --asar --platform=win32 --arch=x64 --icon=Icon.ico --version-string.CompanyName=4DSEdu --version-string.FileDescription=4DSEdu --version-string.ProductName=\"Pesawat Atwood Apps\" --prune=true --out=.build",
+    "win86build": "electron-packager . atwood-apps --overwrite --asar --platform=win32 --arch=ia32 --icon=Icon.ico --version-string.CompanyName=4DSEdu --version-string.FileDescription=4DSEdu --version-string.ProductName=\"Pesawat Atwood Apps\" --prune=true --out=.build",
+    "macpackage": "asar pack .build/atwood-apps-darwin-x64/atwood-apps.app/Contents/Resources/app .build/atwood-apps-darwin-x64/atwood-apps.app/Contents/Resources/app.asar && rm -rf .build/atwood-apps-darwin-x64/atwood-apps.app/Contents/Resources/app",
+    "macdist": "electron-installer-dmg .build/atwood-apps-darwin-x64/atwood-apps.app atwood-apps --out=.build --overwrite --icon=Icon.icns",
+    "win64dist": "node createinstaller64",
+    "win86dist": "node createinstaller86",
+    "test": "jest",
+    "start": "electron ."
+  },
+  "keywords": [
+    "electron",
+    "serialport",
+    "regression",
+    "atwood"
+  ],
+  "author": "prajadimas",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "asar": "^3.0.3",
+    "electron": "^9.0.4",
+    "electron-installer-dmg": "^3.0.0",
+    "electron-packager": "^15.0.0",
+    "electron-rebuild": "^1.11.0",
+    "electron-winstaller": "^4.0.0",
+    "jest": "^26.1.0",
+    "spectron": "^11.1.0"
+  },
+  "dependencies": {
+    "electron-log": "^4.2.2",
+    "electron-store": "^5.2.0",
+    "regression": "^2.0.1",
+    "serialport": "^9.0.0",
+    "ws": "^7.3.0"
+  }
+}
